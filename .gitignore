@@ -1,0 +1,22 @@
+# IntelliJ
+*.ipr
+*.iml
+*.iws
+.idea/
+
+#
+# Eclipse metadata.
+#
+.project
+.classpath
+.settings/
+
+DevOps/docker-build/*.tar.gz
+service/target
+
+#
+# Eclipse and Maven output folders.
+#
+bin/
+target/
+service/.toDelete
