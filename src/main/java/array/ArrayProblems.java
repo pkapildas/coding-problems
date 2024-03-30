@@ -1,3 +1,12 @@
+package array;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class ArrayProblems{
 
@@ -48,7 +57,7 @@ int binarySearch(int[] arr, int low, int hight, int target){
 
 int binarySearchRotatedArray(int[] arr, int target){
      int low =0;
-     int hight = arr.length -1;
+     int high = arr.length -1;
   
   while(low <= high){
     int mid =  (low+ high)/2;
@@ -86,11 +95,72 @@ private int findKthLargestElement(int[] arr, int k){
   for(int num : arr){
     pq.offer(num);
     if(pq.size() > k ){
-      pq.poll()
+      pq.poll();
     }
   }
   return pq.peek();
 
 }
+    ArrayProblems arrayProblems;
+    @BeforeEach
+    public void setUp(){
+        arrayProblems = new ArrayProblems();
+    }
+
+
+    /**
+     Pair with target sum
+
+     Assume  if the elements are sorted
+     first element and last element is less  than the sum then the number are
+     in the range of start to end of array
+     T =O(N)
+     S = O(1)
+     */
+    private int[]  searchPairWithTargetSum(int[] arr, int target){
+        int start =0;
+        int end = arr.length -1;
+
+        while(start<end){
+            int currentSum = arr[start]+arr[end];
+            if(currentSum == target){
+                return  new int[]{start, end};
+            }
+            if(target> currentSum){
+                start++;
+            }else {
+                end--;
+            }
+        }
+        return new int[]{-1, -1};
+    }
+
+    private int[]  searchPairWithTargetSumDuplicates(int[] arr, int target){
+        Map<Integer, Integer> locationMap = new HashMap<>();
+        for(int i =0 ;i < arr.length; ++i){
+            int key = arr[i];
+            if(locationMap.containsKey(key)){
+                return new int[]{locationMap.get(key), i};
+            }else {
+                int cmpl = target - key;
+                locationMap.put(cmpl, i);
+            }
+        }
+        return new int[]{-1, -1};
+
+    }
+    @Test
+    public void test_pairwithTarget(){
+        int[] a = {1,2,3,4,5,6};
+        int[] ints = arrayProblems.searchPairWithTargetSum(a, 3);
+        System.out.println(ints [0] + " "+ ints[1]);
+        Assertions.assertArrayEquals(ints, new  int[]{0,1});
+        ints = arrayProblems.searchPairWithTargetSumDuplicates(a, 6);
+        System.out.println(ints [0] + " "+ ints[1]);
+        Assertions.assertArrayEquals(ints, new  int[]{1,3});
+        a = new int[]{1, 4, 3, 8, 5, 6};
+        ints = arrayProblems.searchPairWithTargetSumDuplicates(a, 4);
+        Assertions.assertArrayEquals(ints, new  int[]{0,2});
+    }
 
 }
