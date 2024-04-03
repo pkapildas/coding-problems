@@ -163,4 +163,33 @@ private int findKthLargestElement(int[] arr, int k){
         Assertions.assertArrayEquals(ints, new  int[]{0,2});
     }
 
+    
+ boolean isTripletExist(int[] nums, int n, int target, int count)
+    {
+        if (count == 3 && target == 0) {
+            return true;
+        }
+        if (count == 3 || n == 0 || target < 0) {
+            //Not reached Possible triplet
+            return false;
+        }
+
+        // recursively call num -  current  or skipping current number and check whether there's as triplet available
+        return isTripletExist(nums, n - 1, target - nums[n - 1], count + 1) ||
+                isTripletExist(nums, n - 1, target, count);
+    }
+
+    @Test
+    public void test_isTripletExist(){
+        int[] nums = { 2, 7, 4, 0, 9, 5, 1, 3 };
+        int target = 6;
+
+        if (isTripletExist(nums, nums.length, target, 0)) {
+            System.out.println("Triplet exists");
+        }
+        else {
+            System.out.println("Triplet doesn't exist");
+        }
+    }
+
 }
