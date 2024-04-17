@@ -143,6 +143,19 @@ public class LListProblems {
   return 0;
     }
 
+    public void reverseLinkedList(){
+        LNode curr = null, prev = null, temp ;
+        temp= head;
+        while(temp!= null){
+            curr = temp.next;
+            temp.next =prev;
+            prev = temp;
+            temp =curr;
+        }
+        head = prev;
+
+    }
+
     @BeforeEach
     public  void before (){
         lListProblems = new LListProblems();

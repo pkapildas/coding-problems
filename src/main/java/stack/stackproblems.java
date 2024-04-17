@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class stackproblems {
 
     /**
@@ -6,10 +8,10 @@ public class stackproblems {
      * 4 13 5 / + = 4+ (13/5) = 6
      */
     public int evaluateReversePolishNotation(String expr){
-        String tokens = expr.split(" ");
+        String[] tokens = expr.split(" ");
         int value = 0;
         String operators = "+-*/";
-        Stack<Integer>  stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
 
         for(String token : tokens){
             if(operators.contains(token)){
@@ -17,23 +19,24 @@ public class stackproblems {
                 //fetch operands 
                 int a =  stack.pop();
                 int b =  stack.pop();
-                swith(token) {
-                    case '+' :
+                switch (token) {
+                    case "+" :
+
                         stack.push(a+b);
                         break;
-                    case '-' :
+                    case "-" :
                         stack.push(a+b);
                         break;
-                    case '*' :
+                    case "*" :
                         stack.push(a+b);
                         break;
-                    case '/' :
+                    case "/" :
                         stack.push(a+b);
                         break;
                 }
 
             }else{
-                stack.push(token);
+               // stack.push(token);
             }
         }
         value = stack.pop();

@@ -23,6 +23,6 @@ public class TreeProblems {
         if(root ==null || subRoot == null){
             return root == subRoot;
         }
-        return root.val == subRoot.val && isSame(root.left, subRoot.left) && isSame(root.right,  subRoot.right);is
+        return root.val == subRoot.val && isSame(root.left, subRoot.left) && isSame(root.right,  subRoot.right);
     }
 }
