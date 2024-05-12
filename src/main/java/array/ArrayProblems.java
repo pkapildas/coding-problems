@@ -20,14 +20,14 @@ public class ArrayProblems{
  */
 
 
-private  int  SearchInfinite(( int[] arr, int target)){
+private  int  SearchInfinite( int[] arr, int target){
 
-    itn low = 0;
+    int low = 0;
     int high = 1;
     // Intention to find which range the target element will be found 
     while(arr[high]< target){
          low = high;
-         hight = 2* high;
+         high = 2* high;
     }
 
     return binarySearch( arr, low, high, target);
@@ -35,7 +35,7 @@ private  int  SearchInfinite(( int[] arr, int target)){
 /**
  * for I index we need to do log(i) times 
  */
-int binarySearch(int[] arr, int low, int hight, int target){
+int binarySearch(int[] arr, int low, int high, int target){
   int mid =  (low+ high)/2;
   while( low<=high){
   if(arr[mid] == target){
@@ -189,6 +189,20 @@ private int findKthLargestElement(int[] arr, int k){
         }
         else {
             System.out.println("Triplet doesn't exist");
+        }
+    }
+
+    class Bank{
+        Map<String, Integer> accounts = new HashMap<>();
+
+        int withdraw(String account ,int amount){
+                int balance = accounts.getOrDefault(account, 0);
+                if(balance> 0){
+                    balance -=  amount;
+                }
+            accounts.put(account, balance);
+                return amount;
+
         }
     }
 
