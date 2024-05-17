@@ -204,5 +204,56 @@ private int findKthLargestElement(int[] arr, int k){
         }
     }
 
+    public static void main(String[] args) {
+        int  [] a = {33,44,55};
+        int b =9;
+        arra_operations(a, b);
+        System.out.println("after update");
+        System.out.println(Arrays.toString(a));
+        System.out.println(" b "+b);
+    }
+    static void arra_operations(int [] a, int b){
+        b =10;
+        int[] array = {1,2,3,4,5};
+        String arrayAsString = Arrays.toString(array);
+        System.out.println("Array "+array);
+        System.out.println("Array "+arrayAsString);
+        System.out.println(Arrays.binarySearch(array ,3));
+        int a1[] = new int[5];
+        Arrays.fill(a1, 54);
+        a[0]= 99;
+    }
+
+    List<Integer> sortBasedOnFrequency(List<Integer> list  ){
+        int size = list.size();
+        Map<Integer, Integer> mapCount = new HashMap<>();
+        Map<Integer, Integer> mapIndex = new HashMap<>();
+        for( int i = 0 ; i< size ; ++i){
+            int element = list.get(i);
+            if(mapCount.containsKey(element)){
+                mapCount.put(element, mapCount.getOrDefault(element, 0)+1);
+            }else {
+                mapCount.put(element, 1);
+                mapIndex.put(element, i);
+            }
+        }
+        Collections.sort(list, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                int fr1 = mapCount.get(o1);
+                int fr2 = mapCount.get(o2);
+                if(fr1!= fr2){
+                    return fr1-fr2;
+                }else {
+                    return mapIndex.get(o1) -
+                            mapIndex.get(o2);
+                }
+            }
+
+        });
+
+        return list;
+
+    }
 
 }
