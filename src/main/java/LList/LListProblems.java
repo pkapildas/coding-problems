@@ -156,6 +156,47 @@ public class LListProblems {
 
     }
 
+    private int getLength(LNode head){
+        int count =0;
+        LNode temp = head;
+        while(temp!=null){
+            count++;
+            temp = temp.next;
+        }
+        return  count
+    }
+    public LNode getMergedNode(LNode l1, LNode l2){
+
+        if(l1 ==null || l2 ==null) {
+            return null;
+        }
+
+        int lengthl1 = getLength(l1);
+        int lengthl2= getLength(l2);
+        LNode head1 = l1;
+        LNode head2 = l2;
+
+        while(lengthl1 > lengthl2){
+            head1 = head1.next;
+            lengthl1--;
+        }
+
+        while(lengthl2 > lengthl1){
+            head2 = head2.next;
+            lengthl2--;
+        }
+
+
+        while(head1 !=head2){
+
+            head1 = head1==null ? head2: head1.next;
+            head2 = head2 ==null ? head1 :head2.next;
+
+
+        }
+        return head1;
+    }
+
     @BeforeEach
     public  void before (){
         lListProblems = new LListProblems();
