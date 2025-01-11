@@ -256,5 +256,32 @@ private int findKthLargestElement(int[] arr, int k){
         return list;
 
     }
+
+    private  int searchSortedRotatedArray(int[] array , int key ) {
+        // case 1 a[0] is < a[mid] then  the left side is sorted
+        //case 2. a[0] is > a[mid ] right side part is sorted
+        //
+        int low = 0, high = array.length -1;
+        while(low<= high){
+            int mid = (low+high)/2;
+            if( array[mid] == key){
+                return  mid;
+            }
+            if(array[low] <= array[mid]){
+                if(key >= array[low] && key < array[mid]){
+                    high = mid-1;
+                }else {
+                    low= mid+1;
+                }
+            }else {
+                if( key > array[mid] && key<=array[high]){
+                    low = mid+1;
+                }else  {
+                    high = mid-1;
+                }
+            }
+        }
+        return  -1;
+    }
 }
 
