@@ -163,7 +163,7 @@ public class LListProblems {
             count++;
             temp = temp.next;
         }
-        return  count
+        return  count;
     }
     public LNode getMergedNode(LNode l1, LNode l2){
 
@@ -195,6 +195,39 @@ public class LListProblems {
 
         }
         return head1;
+    }
+
+    LNode sortTwoLinkedLists(LNode list1, LNode list2) {
+        // Create a dummy node to serve
+        // as the head of the merged list
+        LNode dummy = new LNode(-1, null);
+        LNode temp = dummy;
+
+        // Traverse both lists simultaneously
+        while (list1 != null && list2 != null) {
+            // Compare elements of both lists and
+            // link the smaller node to the merged list
+            if (list1.data <= list2.data) {
+                temp.next = list1;
+                list1 = list1.next;
+            } else {
+                temp.next = list2;
+                list2 = list2.next;
+            }
+            // move temp pointer  next node
+            temp = temp.next;
+        }
+
+        // If any list still has remaining
+        // elements, append them to the merged list
+        if (list1 != null) {
+            temp.next = list1;
+        } else {
+            temp.next = list2;
+        }
+        // Return the merged list starting
+        // from the next of the dummy node
+        return dummy.next;
     }
 
     @BeforeEach
